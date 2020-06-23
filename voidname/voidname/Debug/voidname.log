@@ -1,0 +1,6 @@
+﻿  main.cpp
+C:\Users\2190144\Desktop\個人製作\音\voidname\voidname\main.cpp(41,25): warning C4305: '=': 'int' から 'unsigned char' へ切り詰めます。
+C:\Users\2190144\Desktop\個人製作\音\voidname\voidname\main.cpp(41,19): warning C4309: '=': 定数値が切り捨てられました。
+C:\Users\2190144\Desktop\個人製作\音\voidname\voidname\main.cpp(43,25): warning C4305: '=': 'int' から 'unsigned char' へ切り詰めます。
+C:\Users\2190144\Desktop\個人製作\音\voidname\voidname\main.cpp(43,19): warning C4309: '=': 定数値が切り捨てられました。
+  voidname.vcxproj -> C:\Users\2190144\Desktop\個人製作\音\voidname\Debug\voidname.exe
