@@ -15,34 +15,52 @@ int main(void) {
 	// WAVEファイルのフォーマット情報を用意
 	// https://msdn.microsoft.com/ja-jp/library/cc371559.aspx
 	WAVEFORMATEX waveFormatex;
+
 	waveFormatex.wFormatTag = WAVE_FORMAT_PCM;
 
 	waveFormatex.nChannels = 1; // モノラル:1 ステレオ:2
 
 	waveFormatex.wBitsPerSample = 8; // 量子化ビット数
 
-	//440hz?
+	//ここを変えると音の高さが変わる
 	waveFormatex.nSamplesPerSec = 44100; // 標本化周波数
 
     // データの最小範囲(バイト単位)
 	waveFormatex.nBlockAlign =waveFormatex.nChannels * waveFormatex.wBitsPerSample / 8;
 
-	waveFormatex.nAvgBytesPerSec = // 平均転送ビット数
+	
+	// 平均転送ビット数
+	waveFormatex.nAvgBytesPerSec
 
-	waveFormatex.nSamplesPerSec * waveFormatex.nBlockAlign;
+	 = waveFormatex.nSamplesPerSec * waveFormatex.nBlockAlign;
 
-   
-
+   /*
+   ド  261.626Hz
+   レ  293.665Hz
+   ミ  329.628Hz
+   ファ349.228Hz
+   ソ  391.995Hz
+   ラ  440.000Hz
+   シ  493.883Hz
+   ド  523.251Hz
+   */
+	float freq[8]{ 261.626, 293.665, 329.628,349.228,
+		391.995, 440.000,493.883, 523.251 };
+	
 	//波形を出力するオーディオデバイスを開く
 	waveOutOpen(&hWaveOut, WAVE_MAPPER, &waveFormatex, 0, 0, CALLBACK_NULL);
-	int len = 44100 / 440;
-	for (int i = 0; i < 44100; i++) {
+
+	int len = 44100 / freq[1];
+	for (int i = 0; i < 44100; i++)
+	{
 		if (i % len < len / 2)
-			wave[i] = (128 + 64);
+		{wave[i] = (128 + 64);}
+
 		else
-			wave[i] = (128 + 64);
+		{wave[i] = (128 - 64);}
+			
 	}
-	cout << "矩形波で 440Hz (ラ) を再生！！" << endl;
+//	cout << "矩形波で 440Hz (ラ) を再生！！" << endl;
 	
 	// 波形データの情報と再生フラグの設定
 	int waveLength = 44100;
